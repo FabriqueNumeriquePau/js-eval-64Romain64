@@ -76,131 +76,140 @@ for (let i = 0; i < arrows.length; i++) {
   });
 }
 
+/* ---------------------------------------------------
+------------------------ EXO 3 -----------------------
+----------------------------------------------------*/
+
+// let nav = document.querySelector("nav");
+// let foot = document.querySelector("footer");
+
+
+// class accueil {
+//   constructor(nom, lien) {
+//     this.nom = nom;
+//     this.lien = lien;
+//   }
+
+//   getHTML = () => {
+//     const lien = document.createElement("a");
+//     lien.textContent = this.nom;
+//     lien.href = this.lien;
+//     return lien;
+//   };
+// }
+
+// const promiseFetch = fetch("/data/menu.json");
+
+// // console.log(promiseFetch);
+
+// promiseFetch
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.table(data.principal);
+//     console.log(typeof data);
+//     for (menu of data.principal) {
+//       // le data.principal permet d'aller chercher les données dans le tableau "principal"
+//       let menu1 = new accueil(menu.nom, menu.lien);
+//       const affichage = menu1.getHTML();
+//       nav.appendChild(affichage);
+//     }
+//     for (menu of data.pied) {
+//       // le data.pied permet d'aller chercher les données dans le tableau "pied"
+//       let menu2 = new accueil(menu.nom, menu.lien);
+//       const affichage = menu2.getHTML();
+//       foot.appendChild(affichage);
+//     }
+//     let sous = data.principal[1]; // [1] fait référence au tableau à l'intérieur du principal
+//     // console.log(sous);
+//     let art = nav.childNodes[1];
+//     // console.log(art);
+//     for (menu of sous.sousmenus) {
+//       // le data.pied permet d'aller chercher les données dans le tableau "pied"
+//       let menu3 = new accueil(menu.nom, menu.lien);
+//       const affichage = menu3.getHTML();
+//       affichage.className = "article";
+//       art.appendChild(affichage);
+//     }
+//   });
+
 
 /* ---------------------------------------------------
 ------------------------ EXO 3 -----------------------
 ----------------------------------------------------*/
 
 
-
 let nav = document.querySelector("nav");
 let foot = document.querySelector("footer");
 
 
-console.log(art);
+class accueil {
+  constructor(nom, lien) {
+    this.nom = nom;
+    this.lien = lien;
+  }
 
-class accueil{
-    constructor(nom, lien){
-        this.nom = nom;
-        this.lien = lien;
-    }
+  getMenu = () => {
+    const ul = document.createElement("ul");
+    nav.appendChild(ul)
+    const li = document.createElement("li");
+    li.className = "romain"
+    ul.appendChild(li);
+    const lien = document.createElement("a");
+    lien.textContent = this.nom;
+    lien.href = this.lien;
+    li.appendChild(lien)
+    return ul;
+  };
 
-    getHTML = () => {
-        const lien = document.createElement("a");
-        lien.textContent = this.nom;
-        lien.href = this.lien;
-        return lien;
-    }
-};
+  getSousMenu = () => {
+    const ul = document.createElement("ul");
+    const li = document.createElement("li");
+    ul.appendChild(li);
+    const lien = document.createElement("a");
+    lien.textContent = this.nom;
+    lien.href = this.lien;
+    li.appendChild(lien)
+    return ul;
+  };
+
+  getPied = () => {
+    const lien = document.createElement("a");
+    lien.textContent = this.nom;
+    lien.href = this.lien;
+    return lien;
+}
+}
 
 const promiseFetch = fetch("/data/menu.json");
 
-console.log(promiseFetch);
-
-promiseFetch
-    .then(response => response.json())
-    .then(data => {
-        console.table(data)
-        console.log(typeof data);
-        for (menu of data.principal){
-            let menu1 = new accueil(menu.nom, menu.lien);
-            const affichage = menu1.getHTML();
-            nav.appendChild(affichage);
-        }
-        for (menu of data.pied){
-            let menu2 = new accueil(menu.nom, menu.lien);
-            const affichage = menu2.getHTML();
-            foot.appendChild(affichage);
-        }
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // const titre = document.createElement('ul');
-    // titre.appendChild(document.createTextNode(this.principal))
-    // const nom = document.createElement('li');
-    // nom.appendChild(document.createTextNode(this.nom))
-    // titre.appendChild(nom)
-    // const lien = document.createElement('a href');
-    // lien.appendChild(document.createTextNode(this.lien))
-    // titre.appendChild(lien)
-    // const sousMenu = document.createElement('li');
-    // sousMenu.appendChild(document.createTextNode(this.sousMenus))
-    // titre.appendChild(sousMenu)
-    //}
-
-// const promiseFetch = fetch("/data/menu.json");
-
 // console.log(promiseFetch);
 
-// promiseFetch
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         console.log(typeof data);
-//         for(let menu of data){
-//             const prin = new accueil(menu.principal, menu.nom, menu.lien, menu.sousmenus);
-//             const affichage = prin.getHTML();
-//             document.querySelector("nav").appendChild(affichage);
-//         }
-//     });
+promiseFetch
+  .then((response) => response.json())
+  .then((data) => {
+    // console.table(data.principal);
+    // console.log(typeof data);
+    for (menu of data.principal) {
+      // le data.principal permet d'aller chercher les données dans le tableau "principal"
+      let menu1 = new accueil(menu.nom, menu.lien);
+      const affichage = menu1.getMenu();
+      nav.appendChild(affichage);
+    }
+    let sous = data.principal[1]; // [1] fait référence au tableau à l'intérieur du principal
+    // console.log(sous);
+    let art = nav.childNodes[1];
+    console.log(art);
+    let art2 = art.children[0];
+    console.log(art2);
+    for (menu of sous.sousmenus) {// le data.pied permet d'aller chercher les données dans le tableau "pied"
+      let menu3 = new accueil(menu.nom, menu.lien);
+      const affichage = menu3.getSousMenu();
+      art2.appendChild(affichage);
+    }
+    for (menu of data.pied) {
+      // le data.pied permet d'aller chercher les données dans le tableau "pied"
+      let menu3 = new accueil(menu.nom, menu.lien);
+      const affichage = menu3.getPied();
+      foot.appendChild(affichage);
+    }
+});
