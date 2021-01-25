@@ -81,28 +81,113 @@ for (let i = 0; i < arrows.length; i++) {
 ------------------------ EXO 3 -----------------------
 ----------------------------------------------------*/
 
-// class accueil{
-//     constructor(principal, nom, lien, sousMenus){
-//         this.principal = principal;
-//         this.nom = nom;
-//         this.lien = lien;
-//         this.sousmenus = sousMenus;
-//     }
 
-//     getHTML = () => {
-//     const titre = document.createElement('ul');
-//     titre.appendChild(document.createTextNode(this.principal))
-//     const nom = document.createElement('li');
-//     nom.appendChild(document.createTextNode(this.nom))
-//     titre.appendChild(nom)
-//     const lien = document.createElement('a href');
-//     lien.appendChild(document.createTextNode(this.lien))
-//     titre.appendChild(lien)
-//     const sousMenu = document.createElement('li');
-//     sousMenu.appendChild(document.createTextNode(this.sousMenus))
-//     titre.appendChild(sousMenu)
-//     }
-// }
+
+let nav = document.querySelector("nav");
+let foot = document.querySelector("footer");
+
+
+console.log(art);
+
+class accueil{
+    constructor(nom, lien){
+        this.nom = nom;
+        this.lien = lien;
+    }
+
+    getHTML = () => {
+        const lien = document.createElement("a");
+        lien.textContent = this.nom;
+        lien.href = this.lien;
+        return lien;
+    }
+};
+
+const promiseFetch = fetch("/data/menu.json");
+
+console.log(promiseFetch);
+
+promiseFetch
+    .then(response => response.json())
+    .then(data => {
+        console.table(data)
+        console.log(typeof data);
+        for (menu of data.principal){
+            let menu1 = new accueil(menu.nom, menu.lien);
+            const affichage = menu1.getHTML();
+            nav.appendChild(affichage);
+        }
+        for (menu of data.pied){
+            let menu2 = new accueil(menu.nom, menu.lien);
+            const affichage = menu2.getHTML();
+            foot.appendChild(affichage);
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const titre = document.createElement('ul');
+    // titre.appendChild(document.createTextNode(this.principal))
+    // const nom = document.createElement('li');
+    // nom.appendChild(document.createTextNode(this.nom))
+    // titre.appendChild(nom)
+    // const lien = document.createElement('a href');
+    // lien.appendChild(document.createTextNode(this.lien))
+    // titre.appendChild(lien)
+    // const sousMenu = document.createElement('li');
+    // sousMenu.appendChild(document.createTextNode(this.sousMenus))
+    // titre.appendChild(sousMenu)
+    //}
 
 // const promiseFetch = fetch("/data/menu.json");
 
