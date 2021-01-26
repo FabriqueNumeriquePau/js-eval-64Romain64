@@ -25,7 +25,7 @@ main>header>nav {
     justify-content: flex-end;
 }
 
-/* main>header>nav>a {
+main>header>nav>a {
     display: block;
     margin: 0 10px;
     padding: 5px 15px;
@@ -34,23 +34,43 @@ main>header>nav {
     color: black;
     font-weight: bold;
     text-decoration: none;
-} */
-
+}
 main>header>nav>a:hover {
     background: none;
     color: white;
 }
 
 /* ----------------------------------
+--              ETAPE 4            --
 -----------------------------------*/
 
 nav ul {
     list-style-type: none;
 }
 
-nav ul li a{
-    text-decoration: none;
+nav ul li {
+    display: inline-block;
+    margin: 0 3vh;
+}
 
+ nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 2.5vh;
+}
+
+nav ul li a:hover{
+    color: white;
+    font-weight: bold;
+}
+
+nav ul li ul{
+    position: absolute;
+}
+
+nav ul li ul li{
+    display: flex;
+    margin: 0;
 }
 
 nav ul li ul {
@@ -60,14 +80,14 @@ nav ul li ul {
 }
 
 nav ul li:hover ul {
-    display: flex;
+    display: block;
 }
 
 /* ----------------------------------
 -----------------------------------*/
 
 main>section>aside {
-    display: flex;
+    display: in-block;
     flex-direction: column;
 }
 
